@@ -1,4 +1,6 @@
 import random
+import matplotlib.pyplot as plt
+
 
 startPopulation = 50
 infantMortality = 25
@@ -8,6 +10,7 @@ food = 0
 fertilityx = 18
 fertilityy = 35
 peopleDictionary = []
+populationDictionary = []
 
 class Person:
     def __init__(self, age):
@@ -44,8 +47,11 @@ def runYear(food, agriculture, fertilityx, fertilityy):
             peopleDictionary.remove(person)
         else:
             person.age += 1
+            populationDictionary.append(len(peopleDictionary))
     print(len(peopleDictionary))
-
 beginSim()
 while len(peopleDictionary) < 100000 and len(peopleDictionary) > 1:
     runYear(food, agriculture, fertilityx, fertilityy)
+
+plt.plot(populationDictionary)
+plt.show()
